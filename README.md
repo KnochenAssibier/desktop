@@ -94,3 +94,18 @@ folder: [logos](app/static/logos).
 GitHub® and its stylized versions and the Invertocat mark are GitHub's
 Trademarks or registered Trademarks. When using GitHub's logos, be sure to
 follow the GitHub [logo guidelines](https://github.com/logos).
+
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
+  include Devise::Controllers::Helpers
+end
+
+# config/routes.rb
+Rails.application.routes.draw do
+  # Other routes...
+
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+end
+
